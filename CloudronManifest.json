@@ -1,9 +1,9 @@
 {
-    "id": "com.nastream.oscarz",
-    "title": "OscarzGame",
+    "id": "com.nastream.oscarzgameback",
+    "title": "OscarzGameBack",
     "author": "Rémi Joussé <remi.jousse@nastream.fr>",
     "description": "Game prono oscars",
-    "tagline": "OscarzGame",
+    "tagline": "OscarzGameBack",
     "version": "0.0.1",
     "healthCheckPath": "/",
     "httpPort": 3056,
@@ -11,7 +11,7 @@
       "localstorage": {}
     },
     "manifestVersion": 2,
-    "website": "https://oscarz.nastream.fr",
+    "website": "https://api.oscarz.nastream.fr",
     "contactEmail": "remi.jousse@nastream.fr",
     "tags": [
         "game", "oscars"
