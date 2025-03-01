@@ -3,6 +3,7 @@ const app = express();
 const sqlite3 = require("sqlite3");
 const PORT = 3056;
 const db = new sqlite3.Database("./bdd");
+const cors = require("cors");
 
 // CORS
 app.use(cors({
