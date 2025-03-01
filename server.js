@@ -2,7 +2,7 @@ const express = require("express");
 const app = express();
 const sqlite3 = require("sqlite3");
 const PORT = 3056;
-const db = new sqlite3.Database("./bdd");
+const db = new sqlite3.Database("./data/oscarz.db");
 const cors = require("cors");
 
 // CORS
@@ -76,13 +76,13 @@ app.post("/player", (req, res) => {
     }
     const query = `INSERT INTO players (player_name) values ('${player_name}')`;
 
-    db.run(query, (err) => {
+    db.run(query, function (err) {
         if(err) {
             console.error(err);
             res.status(500).send({error: "Impossible d'ajouter le joueur."});
             return;
         }
-        res.send({message: "Joueur ajouté avec succès"});
+        res.send({ player_id: this.lastID });
     });
 });
 

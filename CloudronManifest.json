@@ -4,11 +4,15 @@
     "author": "Rémi Joussé <remi.jousse@nastream.fr>",
     "description": "Game prono oscars",
     "tagline": "OscarzGameBack",
-    "version": "0.0.1",
+    "version": "0.0.9",
     "healthCheckPath": "/",
     "httpPort": 3056,
     "addons": {
-      "localstorage": {}
+      "localstorage": {
+        "sqlite": {
+          "paths": ["/app/data/oscarz.db"]
+        }
+      }
     },
     "manifestVersion": 2,
     "website": "https://api.oscarz.nastream.fr",
