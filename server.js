@@ -26,7 +26,10 @@ app.get('/movies/bycategory/:categoryid', (req, res) => {
     let query = "SELECT (movie_id) from movies";
 
     if(category_id !== 0) {
-       query = `SELECT m.movie_id, m.movie_name, cm.categories_movies_id, cm.is_winner from categories_movies cm inner join movies m on m.movie_id = cm.movie_id where cm.category_id = ${category_id}`; 
+       query = `SELECT m.movie_id, m.movie_name, cm.categories_movies_id, cm.is_winner 
+        from categories_movies cm 
+        inner join movies m on m.movie_id = cm.movie_id 
+        where cm.category_id = ${category_id}`; 
     }
 
     db.all(query, (err, rows) => {
@@ -41,7 +44,7 @@ app.get('/movies/bycategory/:categoryid', (req, res) => {
 
 // Endpoint liste catégories
 app.get("/categories", (req, res) => {
-    const query = "SELECT * from categories";
+    const query = "SELECT * from categories order by category_id desc";
     db.all(query, (err, rows) => {
         if(err) {
             console.error(err);
@@ -99,6 +102,25 @@ app.post("/player/guess/:playerid/:moviecategoryid", (req, res) => {
             return;
         }
         res.send({message: "Guess ajouté avec succès"});
+    });
+});
+
+
+app.get("/stats", (req, res) => {
+    const query = "SELECT p.player_id, p.player_name, SUM(cm.is_winner) as score  FROM player_guess pg\
+        inner join players p on pg.player_id = p.player_id\
+        inner join categories_movies cm on pg.category_movie_id = cm.categories_movies_id\
+        where cm.is_winner = 1\
+        group by pg.player_id\
+        order by score desc";
+    
+    db.all(query, (err, rows) => {
+        if(err) {
+            console.error(err);
+            res.status(400).send({error: "Impossible de récupérer les stats."});
+            return;
+        }
+        res.send(rows);
     });
 });
 
