@@ -1,9 +1,16 @@
+require('dotenv').config();
 const express = require("express");
 const app = express();
 const sqlite3 = require("sqlite3");
 const PORT = 3056;
-const db = new sqlite3.Database("./bdd");
+let db = new sqlite3.Database("./bdd");
 const cors = require("cors");
+const env = process.env;
+
+if(env.NODE_ENV === 'production') {
+    console.log("Environnement de prod détecté");
+    db = new sqlite3.Database('./data/oscarz.db');
+}
 
 // CORS
 app.use(cors({
