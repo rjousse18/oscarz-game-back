@@ -1,6 +1,6 @@
 {
   "name": "oscarz-game-back",
-  "version": "0.0.10",
+  "version": "0.0.11",
   "description": "",
   "main": "server.js",
   "scripts": {
