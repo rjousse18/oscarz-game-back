@@ -4,7 +4,7 @@
     "author": "Rémi Joussé <remi.jousse@nastream.fr>",
     "description": "Game prono oscars",
     "tagline": "OscarzGameBack",
-    "version": "0.0.9",
+    "version": "0.0.10",
     "healthCheckPath": "/",
     "httpPort": 3056,
     "addons": {
